@@ -56,6 +56,33 @@ class _MainScreenState extends State<MainScreen> {
                 child: Container(
                   color: Colors.amber,
                   height: 50,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          //rewind
+                          IconButton(
+                            onPressed: () async {
+                              final pos = await _controller.position;
+                              final traget = pos!.inMilliseconds - 10000;
+                              await _controller
+                                  .seekTo(Duration(milliseconds: traget));
+                            },
+                            icon: const Icon(Icons.fast_rewind_sharp),
+                          ),
+                          IconButton(
+                            onPressed: () async {
+                              final pos = await _controller.position;
+                              final traget = pos!.inMilliseconds + 10000;
+                              await _controller
+                                  .seekTo(Duration(milliseconds: traget));
+                            },
+                            icon: const Icon(Icons.fast_forward_rounded),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],
